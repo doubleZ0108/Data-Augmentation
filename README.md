@@ -2,13 +2,16 @@
 
 通用目标检测深度学习数据集扩充方法(尤其针对Yolo)
 
-[toc]
+* [具体实现](#具体实现)
+* [如何运行](#如何运行)
+* [开发环境](#开发环境)
+* [关于作者](#关于作者)
 
 ------
 
 ## 具体实现
 
-数据集扩充方法详细说明
+[数据集扩充方法详细说明](https://github.com/doubleZ0108/Data-Augmentation/blob/master/doc/data_augmentation_detailed.md)
 
 - 图像强度变换
   - 亮度变化： [lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)
@@ -29,7 +32,7 @@
 
 > 按从左到右，从上到下顺序排列
 
-<img src="https://upload-images.jianshu.io/upload_images/12014150-3774a4a5ce059a41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" width="67%;" />
+<img src="https://upload-images.jianshu.io/upload_images/12014150-3774a4a5ce059a41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" width="67%;" align="center" />
 
 <br/>
 
@@ -53,11 +56,11 @@
   ```python
   os.chdir(dirname)
   (name, appidx) = os.path.splitext(filename)
-  img = np.array(Image.open(filename)) 						# Image读入的图片形式
+  img = np.array(Image.open(filename))  # Image读入的图片形式
   
-  somealgo_img = crop(np.copy(img))								# 复制一份传入扩充算法
+  somealgo_img = crop(np.copy(img))	# 复制一份传入扩充算法
   somealgo_img.save(name + "_somealgo" + appidx)	# 将扩充图像写入本地
-  saveNoiseLabel(name)														# 自动生成对应的标注(部分算法需要手动标注)
+  saveNoiseLabel(name) # 自动生成对应的标注(部分算法需要手动标注)
   ```
 
 <br/>

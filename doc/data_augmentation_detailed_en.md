@@ -1,44 +1,44 @@
-# 数据集扩充方法详细说明
+# Detailed description of data augmentation methods
 
-   * [数据集扩充方法详细说明](#数据集扩充方法详细说明)
-      * [图像强度变换](#图像强度变换)
-         * [亮度变化](#亮度变化)
-         * [对比度变化](#对比度变化)
-      * [图像滤波](#图像滤波)
-         * [锐化](#锐化)
-         * [高斯模糊](#高斯模糊)
-      * [透视变换](#透视变换)
-         * [镜像翻转](#镜像翻转)
-         * [图像裁剪](#图像裁剪)
-         * [图像拉伸](#图像拉伸)
-         * [镜头畸变](#镜头畸变)
-      * [注入噪声](#注入噪声)
-         * [椒盐噪声](#椒盐噪声)
-         * [渐晕](#渐晕)
-      * [其他](#其他)
-         * [随机抠除](#随机抠除)
+   * [Detailed description of data augmentation methods](#detailed-description-of-data-augmentation-methods)
+      * [Intensity Transform](#intensity-transform)
+         * [Luminance Fluctuation](#luminance-fluctuation)
+         * [Contrast Transform](#contrast-transform)
+      * [Image Filtering](#image-filtering)
+         * [Sharpening](#sharpening)
+         * [Gaussian Blur](#gaussian-blur)
+      * [Perspective Transform](#perspective-transform)
+         * [Mirror Flip](#mirror-flip)
+         * [Image Clipping](#image-clipping)
+         * [Image Stretching](#image-stretching)
+         * [Lens Distortion](#lens-distortion)
+      * [Injected Noise](#injected-noise)
+         * [Salt and Pepper Noise](#salt-and-pepper-noise)
+         * [Vignetting](#vignetting)
+      * [Others](#others)
+         * [Random Cutout](#random-cutout)
 
 ------
 
-**原图**
+**origin image**
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-68b3a00fdc229303.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo.jpg" width="50%;" />
 
-## 图像强度变换
+## Intensity Transform
 
-### 亮度变化
+### Luminance Fluctuation
 
-[lightness](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/lightness.py)
+[lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)
 
 [darkness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/darkness.py)
 
-图像整体加上一个随机偏差，或整体进行尺度的放缩
+The image as a whole plus a random deviation, or the overall scale of the scaling.
 
-- **亮度增强**
+- **Brightness**
 
   <img src="https://upload-images.jianshu.io/upload_images/12014150-52ddaafbe5baeb46.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_brightness.jpg" width="50%;" />
 
-- **亮度减弱**
+- **Darkness**
 
   <img src="https://upload-images.jianshu.io/upload_images/12014150-52fb0b2aa553d1f5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_darkness.jpg" width="50%;" />
 
@@ -47,13 +47,13 @@ brightness = 1 + np.random.randint(1, 9) / 10
 brightness_img = img.point(lambda p: p * brightness)
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
-### 对比度变化
+### Contrast Transform
 
-[contrast](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/contrast.py)
+[contrast](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/contrast.py)
 
-扩展图像灰度级动态范围，对两极的像素进行压缩，对中间范围的像素进行扩展
+Expand the dynamic range of image gray level, compress the pixels at the two poles, and expand the pixels at the middle range.
 
 ```python
 range_contrast=(-50, 50)
@@ -61,19 +61,19 @@ contrast = np.random.randint(*range_contrast)
 contrast_img = img.point(lambda p: p * (contrast / 127 + 1) - contrast)
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-28d8278dee909f49.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_contrast.jpg" width="50%;" />
 
 <br/>
 
-## 图像滤波
+## Image Filtering
 
-### 锐化
+### Sharpening
 
-[sharpen](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/sharpen.py)
+[sharpen](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/sharpen.py)
 
-增强图像边缘信息
+Enhance image edge information.
 
 ```python
 identity = np.array([[0, 0, 0],
@@ -88,40 +88,40 @@ kernel = identity + sharp
 sharpen_img = cv2.filter2D(img, -1, kernel)
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-1263dc2e13f5d671.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_sharpen.jpg" width="50%;" />
 
-### 高斯模糊
+### Gaussian Blur
 
-[blur](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/blur.py)
+[blur](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/blur.py)
 
-图像平滑
+Image smoothing.
 
 ```python
 kernel_size = (7, 7)
 blur_img = cv2.GaussianBlur(img,kernel_size,0)
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-58bca6cb92d4d542.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_blur.jpg" width="50%;" />
 
 <br/>
 
-## 透视变换
+## Perspective Transform
 
-### 镜像翻转
+### Mirror Flip
 
-[flip](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/flip.py)
+[flip](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/flip.py)
 
-使图像沿长轴进行翻转
+Flip the image along the long axis
 
 ```python
 flip_img = cv2.flip(cv2.cvtColor(np.asarray(img),cv2.COLOR_RGB2BGR), 1)
 ```
 
-> 第一个位置的参数 $pos = 1 - pos$，其他信息不变，可以采用脚本自动生成
+> The first position parameter $pos = 1 - pos$, other information unchanged, can be automatically generated by script
 >
 > ```python
 > with open(name + "_flip.txt", "w") as outfile:
@@ -134,11 +134,11 @@ flip_img = cv2.flip(cv2.cvtColor(np.asarray(img),cv2.COLOR_RGB2BGR), 1)
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-0336d65402d15237.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_flip.jpg" width="50%;" />
 
-### 图像裁剪
+### Image Clipping
 
-[crop](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/crop.py)
+[crop](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/crop.py)
 
-裁剪原图80%大小的中心图像，并进行随机移动
+Crop the center image of the original 80% size and move it randomly
 
 ```python
 kernel_size = list(map(lambda x: int(x*0.8), size))
@@ -151,31 +151,31 @@ crop_img = img[
 ]
 ```
 
-> 可能将目标对象裁减掉，因此采用手工重新标注
+> It is possible to trim off the target object and therefore re-annotate it manually
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-346ec7617782e807.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_crop.jpg" width="50%;" />
 
-### 图像拉伸
+### Image Stretching
 
-[deform](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/deform.py)
+[deform](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/deform.py)
 
-拉伸成长宽为原始宽的正方形图像
+A square image stretched to its original width.
 
 ```python
 deform_img = img.resize((int(w), int(w)))
 ```
 
-> 原图中比例信息改变，最好重新手工标注
+> The scale information in the original drawing has been changed, it is better to mark manually again
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-ed8fd4ef139b7e75.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_deform.jpg" width="50%;" />
 
-### 镜头畸变
+### Lens Distortion
 
-[distortion](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/distortion.py)
+[distortion](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/distortion.py)
 
-对图像进行透视变化，模拟鱼眼镜头的镜头畸变
+The lens distortion of fisheye lens is simulated by means of perspective change
 
-通过播放径向系数k1，k2，k3和切向系数$\rho1$, $\rho2$实现
+By playing radial coefficients k1, k2, k3 and tangential coefficients $\rho1$ and $\rho2$
 
 ```python
 d_coef= np.array((0.15, 0.15, 0.1, 0.1, 0.05))
@@ -197,19 +197,19 @@ remap = cv2.initUndistortRectifyMap(K, d_coef, None, M, (w, h), 5)
 distortion_img = cv2.remap(img, *remap, cv2.INTER_LINEAR)
 ```
 
-> 最好重新手工标注
+> It's better to relabel by hand
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-c33b16682ef46ebf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_distortion.jpg" width="50%;" />
 
 <br/>
 
-## 注入噪声
+## Injected Noise
 
-### 椒盐噪声
+### Salt and Pepper Noise
 
-[noise](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/noise.py)
+[noise](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/noise.py)
 
-在图像中随机添加白/黑像素
+Randomly add white/black pixels to the image.
 
 ```python
 for i in range(5000):
@@ -219,15 +219,15 @@ for i in range(5000):
   noise_img.flags.writeable = True
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-0264d134d8ce1211.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_noise.jpg" width="50%;" />
 
-### 渐晕
+### Vignetting
 
-[vignetting](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/vignetting.py)
+[vignetting](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/vignetting.py)
 
-对图像添加一个圆范围内的噪声模拟光晕
+Add a noise simulation halo to the image within a circle range.
 
 ```python
 ratio_min_dist=0.2
@@ -252,19 +252,19 @@ sign = 2 * (np.random.random() < 0.5) * (random_sign) - 1
 vignetting_img = img * (1 + sign * vignette)
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-3e8b67995db963e3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_vignetting.jpg" width="50%;" />
 
 <br/>
 
-## 其他
+## Others
 
-### 随机抠除
+### Random Cutout
 
-[cutout](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/src/data-augmentation/cutout.py)
+[cutout](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/cutout.py)
 
-随机抠出四个位置，并用黑色/彩色矩形填充
+Randomly cut out four positions and fill them with black/color rectangles.
 
 ```python
 channel_wise = False
@@ -289,7 +289,7 @@ for _ in range(max_crop):
       cutout_img[shift_h:shift_h+h, shift_w:shift_w+w] = replacement
 ```
 
-> 不影响label的位置
+> Does not affect the label
 
 <img src="https://upload-images.jianshu.io/upload_images/12014150-ed2337394e6352b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="demo_cutout.jpg" width="50%;" />
 

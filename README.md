@@ -1,5 +1,7 @@
 # 数据集扩充
 
+[中文(zh-cn)](https://github.com/doubleZ0108/Data-Augmentation/blob/master/README.md) | [English(en)](https://github.com/doubleZ0108/Data-Augmentation/blob/master/README_en.md)
+
 通用目标检测深度学习数据集扩充方法(尤其针对Yolo)
 
 * [具体实现](#具体实现)
@@ -75,8 +77,8 @@
 
 ## 关于作者
 
-|      姓名 \| Name👤      |                   张喆 \| doubleZ                   |
-| :---------------------: | :-------------------------------------------------: |
-| **学校 \| University🏫** |              同济大学 \| Tongji Univ.               |
-| **联系方式 \| Email✉️**  | [dbzdbz@tongji.edu.cn](mailto:dbzdbz@tongji.edu.cn) |
+|     姓名👤     |                   张喆 \| doubleZ                   |
+| :-----------: | :-------------------------------------------------: |
+|   **学校🏫**   |                      同济大学                       |
+| **联系方式✉️** | [dbzdbz@tongji.edu.cn](mailto:dbzdbz@tongji.edu.cn) |
 

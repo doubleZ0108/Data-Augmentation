@@ -1,6 +1,6 @@
 # Data Augmentation
 
-<div align="center">中文(zh-cn) | English(en)</div>
+[中文(zh-cn)](https://github.com/doubleZ0108/Data-Augmentation/blob/master/README.md) | [English(en)](https://github.com/doubleZ0108/Data-Augmentation/blob/master/README_en.md)
 
 General Data Augmentation Algorithms for Object Detection(esp. Yolo)
 
@@ -14,7 +14,7 @@ General Data Augmentation Algorithms for Object Detection(esp. Yolo)
 
 ## Implementation
 
-Detailed description of data augmentation methods
+[Detailed description of data augmentation methods](https://github.com/doubleZ0108/Data-Augmentation/blob/master/doc/data_augmentation_detailed_en.md)
 
 - Intensity Transform
   - Luminance Fluctuation： [lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)

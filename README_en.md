@@ -47,7 +47,7 @@ General Data Augmentation Algorithms for Object Detection(esp. Yolo)
   pip install -r requirements.txt
   ```
 
-- place the original image and labeled data in `data/`
+- place the original image and [labeled data](https://github.com/doubleZ0108/IDEA-Lab-Summer-Camp/blob/master/doc/Study-Notes/labelImg工具.md) in `data/`
 
 - for run
 

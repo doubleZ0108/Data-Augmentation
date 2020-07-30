@@ -60,9 +60,9 @@
   (name, appidx) = os.path.splitext(filename)
   img = np.array(Image.open(filename))  # Image读入的图片形式
   
-  somealgo_img = crop(np.copy(img))	# 复制一份传入扩充算法
+  somealgo_img = somealgo(np.copy(img))	# 复制一份传入扩充算法
   somealgo_img.save(name + "_somealgo" + appidx)	# 将扩充图像写入本地
-  saveNoiseLabel(name) # 自动生成对应的标注(部分算法需要手动标注)
+  saveSomeAlgoLabel(name) # 自动生成对应的标注(部分算法需要手动标注)
   ```
 
 <br/>

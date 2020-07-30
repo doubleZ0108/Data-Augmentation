@@ -61,9 +61,9 @@ General Data Augmentation Algorithms for Object Detection(esp. Yolo)
   (name, appidx) = os.path.splitext(filename)
   img = np.array(Image.open(filename))  # Image format image input
   
-  somealgo_img = crop(np.copy(img))	# copy to the concrete algorithm
+  somealgo_img = somealgo(np.copy(img))	# copy to the concrete algorithm
   somealgo_img.save(name + "_somealgo" + appidx)	# store the images locally
-  saveNoiseLabel(name) # auto generate corresponding annotation(some algos need manual annotation)
+  saveSomeAlgoLabel(name) # auto generate corresponding annotation(some algos need manual annotation)
   ```
 
 <br/>

@@ -17,7 +17,7 @@ General Data Augmentation Algorithms for Object Detection(esp. Yolo)
 [Detailed description of data augmentation methods](https://github.com/doubleZ0108/Data-Augmentation/blob/master/doc/data_augmentation_detailed_en.md)
 
 - Intensity Transform
-  - Luminance Fluctuation： [lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)
+  - Luminance Fluctuation： [lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)   [darkness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/darkness.py)
   - Contrast Transform：[contrast](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/contrast.py)
 - Filtering
   - Image Sharpening：[sharpen](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/sharpen.py)

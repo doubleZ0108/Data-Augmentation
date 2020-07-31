@@ -16,7 +16,7 @@
 [数据集扩充方法详细说明](https://github.com/doubleZ0108/Data-Augmentation/blob/master/doc/data_augmentation_detailed.md)
 
 - 图像强度变换
-  - 亮度变化： [lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)
+  - 亮度变化： [lightness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/lightness.py)   [darkness](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/darkness.py)
   - 对比度变化：[contrast](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/contrast.py)
 - 图像滤波
   - 锐化：[sharpen](https://github.com/doubleZ0108/Data-Augmentation/blob/master/src/sharpen.py)
@@ -34,7 +34,7 @@
 
 > 按从左到右，从上到下顺序排列
 
-<img src="https://upload-images.jianshu.io/upload_images/12014150-3774a4a5ce059a41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" width="67%;" align="center" />
+<img src="README.assets/1240.png" alt="image.png" width="67%;" align="center" />
 
 <br/>
 

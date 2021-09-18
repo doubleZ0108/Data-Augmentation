@@ -34,7 +34,7 @@
 
 > 按从左到右，从上到下顺序排列
 
-<img src="README.assets/1240.png" alt="image.png" width="67%;" align="center" />
+<img src="https://doublez-site-bed.oss-cn-shanghai.aliyuncs.com/img/20210918215930.png" alt="image.png" width="67%;" align="center" />
 
 <br/>
 

@@ -35,7 +35,7 @@ General Data Augmentation Algorithms for Object Detection(esp. Yolo)
 
 > from left to right, top to bottom
 
-<img src="https://doublez-site-bed.oss-cn-shanghai.aliyuncs.com/img/20210918215930.png" alt="image.png" width="67%;" align="center" />
+<img src="https://upload-images.jianshu.io/upload_images/12014150-38d9933ec9b9e736.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" width="67%;" align="center" />
 
 <br/>
 
